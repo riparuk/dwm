@@ -62,6 +62,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
+static const char *clipmenu[] = { "clipmenu", "-nb", col_dark, "-nf", col_gray3, "-sb", col_hlight, "-sf", col_gray4, NULL };
 static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%",   NULL };
 static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-10%",   NULL };
 static const char *mute_vol[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
@@ -118,7 +119,7 @@ static const Key keys[] = {
     	{ MODKEY|ShiftMask,             XK_y, scratchpad_hide, {.i = 2} },
     	{ MODKEY|ShiftMask,             XK_u, scratchpad_hide, {.i = 3} },
 	{ MODKEY|ShiftMask,             XK_r, scratchpad_remove, {0} },
-	{ MODKEY,             XK_o,   spawn,   SHCMD("clipmenu") },
+	{ MODKEY,             XK_o,   spawn,   {.v = clipmenu } },
 	{ MODKEY|ShiftMask,   XK_o,   spawn,   SHCMD("clipdel -d '.*'") }
 };
 

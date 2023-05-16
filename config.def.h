@@ -65,8 +65,6 @@ static const Layout layouts[] = {
 static const char *clipmenu[] = { "clipmenu", "-nb", col_dark, "-nf", col_gray3, "-sb", col_hlight, "-sf", col_gray4, NULL };
 static const char *mute_vol[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
 static const char *mute_mic[] = { "pactl", "set-source-mute",   "@DEFAULT_SOURCE@", "toggle", NULL };
-static const char *brighter[] = { "brightnessctl", "set", "10%+", NULL };
-static const char *dimmer[]   = { "brightnessctl", "set", "10%-", NULL };
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_dark, "-nf", col_gray3, "-sb", col_hlight, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
@@ -100,8 +98,8 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioMute,         spawn, {.v = mute_vol } },
         { 0, XF86XK_AudioLowerVolume,  spawn, SHCMD("pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5% ; pkill -RTMIN+10 dwmblocks") },
         { 0, XF86XK_AudioRaiseVolume,  spawn, SHCMD("pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5% ; pkill -RTMIN+10 dwmblocks") },
-	{ 0, XF86XK_MonBrightnessDown, spawn, {.v = dimmer } },
-        { 0, XF86XK_MonBrightnessUp,   spawn, {.v = brighter } },
+	{ 0, XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl set 10%- ; pkill -RTMIN+11 dwmblocks") },
+        { 0, XF86XK_MonBrightnessUp,   spawn, SHCMD("brightnessctl set 10%+ ; pkill -RTMIN+11 dwmblocks") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

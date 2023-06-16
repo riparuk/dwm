@@ -1,0 +1,2 @@
+get_volume=$(pactl list sinks | grep 'Volume:.f' | awk '{print $5}')
+pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5% ; pkill -RTMIN+10 dwmblocks ; echo Volume: $get_volume | dzen2 -p 1 -w $(echo $(expr 100 + 30 \* $(echo $get_volume | wc -w))) -h '50' -x 10 -y 28

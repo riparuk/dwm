@@ -98,8 +98,8 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioMute,         spawn, {.v = mute_vol } },
         { 0, XF86XK_AudioLowerVolume,  spawn, SHCMD("changeVolume 2dB- unmute; pkill -RTMIN+10 dwmblocks") },
         { 0, XF86XK_AudioRaiseVolume,  spawn, SHCMD("changeVolume 2dB+ unmute; pkill -RTMIN+10 dwmblocks") },
-	{ 0, XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl set 10%- ; pkill -RTMIN+11 dwmblocks ; echo Brightness:$(($(cat /sys/class/backlight/intel_backlight/brightness) * 100 / $(cat /sys/class/backlight/intel_backlight/max_brightness)))% | dzen2 -p 1 -w '160' -h '50' -x 10 -y 28 ") },
-        { 0, XF86XK_MonBrightnessUp,   spawn, SHCMD("brightnessctl set 10%+ ; pkill -RTMIN+11 dwmblocks ; echo Brightness:$(($(cat /sys/class/backlight/intel_backlight/brightness) * 100 / $(cat /sys/class/backlight/intel_backlight/max_brightness)))% | dzen2 -p 1 -w '160' -h '50' -x 10 -y 28 ") },
+	{ 0, XF86XK_MonBrightnessDown, spawn, SHCMD("changeBrightness 10%- ; pkill -RTMIN+11 dwmblocks") },
+        { 0, XF86XK_MonBrightnessUp,   spawn, SHCMD("changeBrightness 10%+ ; pkill -RTMIN+11 dwmblocks") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

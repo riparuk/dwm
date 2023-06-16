@@ -1,0 +1,17 @@
+#!/bin/bash
+# changeBrightness
+
+msgTag="mybrightness"
+
+# Change the brightness with brightnessctl
+brightnessctl set "$@" > /dev/null
+
+# Query 
+brightness="$(echo "$(brightnessctl | grep "Current" | awk '{print $4}' | sed 's/[^0-9]*//g')")"
+
+# Show the brightness notification
+dunstify -a "changeBrightness" -u low -i display-brightness -h string:x-dunst-stack-tag:$msgTag \
+-h int:value:"$brightness" "Brightness: ${brightness}%"
+
+# Play the volume changed sound
+canberra-gtk-play -i audio-volume-change -d "changeBrightness"

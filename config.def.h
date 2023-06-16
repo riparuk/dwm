@@ -96,8 +96,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ 0, XF86XK_AudioMicMute,      spawn, {.v = mute_mic } },
 	{ 0, XF86XK_AudioMute,         spawn, {.v = mute_vol } },
-        { 0, XF86XK_AudioLowerVolume,  spawn, SHCMD("pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5% ; pkill -RTMIN+10 dwmblocks ; echo Volume : $(pactl list sinks | grep -oP 'Volume:.*?%' | awk '{print $5}') | dzen2 -p 1 -w '140' -h '50' -x 10 -y 28 ") },
-        { 0, XF86XK_AudioRaiseVolume,  spawn, SHCMD("pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5% ; pkill -RTMIN+10 dwmblocks ; echo Volume : $(pactl list sinks | grep -oP 'Volume:.*?%' | awk '{print $5}') | dzen2 -p 1 -w '140' -h '50' -x 10 -y 28 ") },
+        { 0, XF86XK_AudioLowerVolume,  spawn, SHCMD("changeVolume 2dB- unmute; pkill -RTMIN+10 dwmblocks") },
+        { 0, XF86XK_AudioRaiseVolume,  spawn, SHCMD("changeVolume 2dB+ unmute; pkill -RTMIN+10 dwmblocks") },
 	{ 0, XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl set 10%- ; pkill -RTMIN+11 dwmblocks ; echo Brightness:$(($(cat /sys/class/backlight/intel_backlight/brightness) * 100 / $(cat /sys/class/backlight/intel_backlight/max_brightness)))% | dzen2 -p 1 -w '160' -h '50' -x 10 -y 28 ") },
         { 0, XF86XK_MonBrightnessUp,   spawn, SHCMD("brightnessctl set 10%+ ; pkill -RTMIN+11 dwmblocks ; echo Brightness:$(($(cat /sys/class/backlight/intel_backlight/brightness) * 100 / $(cat /sys/class/backlight/intel_backlight/max_brightness)))% | dzen2 -p 1 -w '160' -h '50' -x 10 -y 28 ") },
 	TAGKEYS(                        XK_1,                      0)

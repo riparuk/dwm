@@ -13,15 +13,15 @@ static const char *fonts[]          = { "Source Code Pro:size=10" };
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char col_white[]       = "#ffffff";
 static const char col_dark[]	    = "#232831";
 static const char col_hlight[]	    = "#4C566A";
+static const char col_sel[]	    = "#ffffff";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_dark, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_hlight,  col_hlight },
+	[SchemeNorm] = { col_gray3, col_dark, col_dark },		/* Normal Window */
+	[SchemeSel]  = { col_white, col_dark,  col_sel },		/* Selected Window */
 };
 
 /* tagging */
@@ -62,11 +62,11 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *clipmenu[] = { "clipmenu", "-nb", col_dark, "-nf", col_gray3, "-sb", col_hlight, "-sf", col_gray4, NULL };
+static const char *clipmenu[] = { "clipmenu", "-nb", col_dark, "-nf", col_gray3, "-sb", col_hlight, "-sf", col_white, NULL };
 static const char *mute_vol[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
 static const char *mute_mic[] = { "pactl", "set-source-mute",   "@DEFAULT_SOURCE@", "toggle", NULL };
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-nb", col_dark, "-nf", col_gray3, "-sb", col_hlight, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-nb", col_dark, "-nf", col_gray3, "-sb", col_hlight, "-sf", col_white, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static const Key keys[] = {

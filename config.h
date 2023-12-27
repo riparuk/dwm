@@ -9,7 +9,7 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
-static const char *fonts[]          = { "Source Code Pro:size=10" };
+static const char *fonts[]          = { "Source Code Pro:size=10:antialias=true:autohint=true" };
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -70,6 +70,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-nb", col_dark, "-nf", col_gray3, "-sb", col_hlight, "-sf", col_white, NULL };
 static const char *roficmd[] = { "rofi", "-show", "drun", "-show-icons", NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *flameshot[] = { "flameshot", "gui", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -97,12 +98,13 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ 0, 														XK_Print,	 spawn, 				 {.v = flameshot } },
 	{ 0, XF86XK_AudioMicMute,      spawn, {.v = mute_mic } },
 	{ 0, XF86XK_AudioMute,         spawn, {.v = mute_vol } },
-        { 0, XF86XK_AudioLowerVolume,  spawn, SHCMD("changeVolume 5%- unmute; pkill -RTMIN+10 dwmblocks") },
-        { 0, XF86XK_AudioRaiseVolume,  spawn, SHCMD("changeVolume 5%+ unmute; pkill -RTMIN+10 dwmblocks") },
+  { 0, XF86XK_AudioLowerVolume,  spawn, SHCMD("changeVolume 5%- unmute; pkill -RTMIN+10 dwmblocks") },
+  { 0, XF86XK_AudioRaiseVolume,  spawn, SHCMD("changeVolume 5%+ unmute; pkill -RTMIN+10 dwmblocks") },
 	{ 0, XF86XK_MonBrightnessDown, spawn, SHCMD("changeBrightness 10%- ; pkill -RTMIN+11 dwmblocks") },
-        { 0, XF86XK_MonBrightnessUp,   spawn, SHCMD("changeBrightness 10%+ ; pkill -RTMIN+11 dwmblocks") },
+  { 0, XF86XK_MonBrightnessUp,   spawn, SHCMD("changeBrightness 10%+ ; pkill -RTMIN+11 dwmblocks") },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
